@@ -8,26 +8,26 @@ def assign(new_list, i, old_list, j):
 
 
 # 3. Turned function name to snake case (mergeSort => merge_sort)
-# 4. Renamed parameter (list_to_sort_by_merge => list)
-def merge_sort(list):
+# 4. Renamed parameter (list_to_sort_by_merge => input_list)
+def merge_sort(input_list):
     # 5. Refactored the condition. We return early if the list has <= 1 element
     #    This makes the code easier to read
-    if len(list) <= 1:
+    if len(input_list) <= 1:
         return
 
-    mid = len(list) // 2
+    mid = len(input_list) // 2
     # 6. Renamed variables (left => left_list, right => right_list)
-    left_list = list[:mid]
-    right_list = list[mid:]
+    left_list = input_list[:mid]
+    right_list = input_list[mid:]
 
     merge_sort(left_list)
     merge_sort(right_list)
 
     # 7. Extracted the merging logic to a separate function (merge)
-    merge(list, left_list, right_list)
+    merge(input_list, left_list, right_list)
 
 
-def merge(list, left_list, right_list):
+def merge(input_list, left_list, right_list):
     # We could also rename the variables (l, r, i) to be more descriptive (left_index, right_index, merged_index)
     # But subjectively in my opinion, they look better as they are, so I will keep them as is
     l = 0
@@ -37,21 +37,21 @@ def merge(list, left_list, right_list):
     while l < len(left_list) and r < len(right_list):
         if left_list[l] <= right_list[r]:
             # 8. No need to use kwargs here
-            assign(list, i, left_list, l)
+            assign(input_list, i, left_list, l)
             l += 1
         else:
             # 8. No need to use kwargs here
-            assign(list, i, right_list, r)
+            assign(input_list, i, right_list, r)
             r += 1
         i += 1
 
     while l < len(left_list):
-        list[i] = left_list[l]
+        input_list[i] = left_list[l]
         l += 1
         i += 1
 
     while r < len(right_list):
-        list[i] = right_list[r]
+        input_list[i] = right_list[r]
         r += 1
         i += 1
 
